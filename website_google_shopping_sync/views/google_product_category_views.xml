@@ -1,0 +1,56 @@
+<odoo>
+    <!-- Google Product Category Form View -->
+    <record id="google_product_category_form_view" model="ir.ui.view">
+        <field name="model">google_product_category</field>
+        <field name="arch" type="xml">
+            <form string="Google Product Category">
+                <group>
+                    <field name="google_id"/>
+                    <field name="name"/>
+                    <field name="product_ids" widget="many2many_tags"/>
+                </group>
+            </form>
+        </field>
+    </record>
+
+    <!-- Google Product Category Kanban View -->
+    <record id="google_product_category_kanban_view" model="ir.ui.view">
+        <field name="model">google_product_category</field>
+        <field name="arch" type="xml">
+            <kanban string="Google Shopping categories">
+                <field name="google_id"/>
+                <field name="name"/>
+            </kanban>
+        </field>
+    </record>
+
+    <!-- Action for Google Product Category -->
+    <record id="google_product_category_action" model="ir.actions.act_window">
+        <field name="name">Google product categories</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">product.product</field>
+        <field name="view_mode">kanban,form</field> <!-- Kanban or Form view -->
+        <field name="view_id" eval="False"/>
+        <field name="help" type="html">
+            <p class="oe_view_nocontent_create">
+                Click to define a new product.
+            </p>
+            <p>
+                These products are used by Google to index your products
+                well categorized.
+            </p>
+        </field>
+    </record>
+
+    <!-- Google Product Menu Item (Top Level) -->
+    <menuitem id="google_product_root"
+              name="Google product"
+              sequence="10"
+              web_icon=",static/description/icon.png"/>
+    <menuitem
+        id="menu_google_product_category"
+        parent="google_product_root"
+        name="Google Products"
+        action="google_product_category_action"
+        sequence="10"/>
+</odoo>

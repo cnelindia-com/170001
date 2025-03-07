@@ -1,0 +1,73 @@
+<odoo>
+    <!-- Form View for New Model -->
+    <record id="new_model_form_view" model="ir.ui.view">
+        <field name="name">new.model.form</field>
+        <field name="model">new.model</field>
+        <field name="arch" type="xml">
+            <form string="Name and Surname Form">
+                <header>
+                    <!-- Download Button -->
+                    <button name="action_download" string="Download" type="object" class="btn-primary"/>
+
+                    <div style="display: inline-block; margin-left: 1086px; padding: 10px; background-color: #f0f0f0; border: 1px solid #ccc; border-radius: 5px;">
+                        <!-- Text "Total Products:" -->
+                        <span style="font-weight: bold; margin-right: 5px;">Total Products:</span>
+
+                        <!-- Product Count Value -->
+                        <field name="product_count" readonly="True"/>
+                    </div>
+
+                </header>
+                
+                <sheet>
+                    <group style="display: flex;">
+                        <field name="recipient" string="Recipient" />
+                        <field name="use_model" string="Use Model" widget="radio" >
+                            <option name="product">Product</option>
+                            <option name="product_template">Product Template</option>
+                        </field>
+                    </group>
+
+                    <group style="width: 50%;">
+                        <field name="useToken" string="Use Token" widget="boolean"/>
+                        <field name="accessToken" string="Access Token"/>
+                        <field name="fileName" string="File Name"/>
+                    </group>
+                    
+                    <group style="width: 50%;">
+                        <field name="file_format" string="File Format" widget="radio"/>
+                    </group>
+                    
+                    <group style="display: flex; flex-wrap: wrap-reverse;">
+                        <field name="currency_position" string="Currency Position" widget="radio"/>
+                        <!-- <field name="availability_type" string="Availability Type"/> -->
+                        <!-- <field name="stock_mode" string="Out Of Stock mode"/> -->
+                        <!-- <field name="stock_location" string="Stock Location"/> -->
+                    </group>
+
+                    <!-- <group>
+                        <field name="pricelist" string="Pricelist"/>
+                        <field name="salePricelist" string="Sale Pricelist"/>
+                        <field name="imageResolution" string="Image Resolution"/>
+                        <field name="productRootCategory" string="Product Root Category"/>
+                    </group> -->
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Action for New Model -->
+    <record id="action_new_model" model="ir.actions.act_window">
+        <field name="name">Name and Surname Form</field>
+        <field name="res_model">new.model</field>
+        <field name="view_mode">form</field>
+        <field name="target">current</field>
+    </record>
+
+    <!-- Menu Item for New Model -->
+    <menuitem id="menu_new_model" 
+              name="Google Merchant" 
+              parent="google_product_root" 
+              action="action_new_model" 
+              sequence="20"/>
+</odoo>
